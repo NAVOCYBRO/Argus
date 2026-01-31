@@ -117,4 +117,8 @@ python app.py
 <img width="1364" height="655" alt="Screenshot_20260201_014332" src="https://github.com/user-attachments/assets/489c5838-2cf8-41d4-be41-9df267429eb5" />
 
 
+# Video DEMO
+[Screencast_20260201_015128.webm](https://github.com/user-attachments/assets/e04322af-4230-45d5-83ba-15d53edc933a)
+
+
 
