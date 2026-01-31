@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results - AI Cybersecurity Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-alt"></i> Scan Results</h1>
+            <a href="/" class="back-button"><i class="fas fa-arrow-left"></i> New Scan</a>
+        </header>
+
+        {% if results %}
+        <div class="results-summary">
+            <div class="summary-card critical">
+                <h3><i class="fas fa-exclamation-triangle"></i> Critical</h3>
+                <p class="count">{{ results.summary.critical }}</p>
+            </div>
+            <div class="summary-card high">
+                <h3><i class="fas fa-exclamation-circle"></i> High</h3>
+                <p class="count">{{ results.summary.high }}</p>
+            </div>
+            <div class="summary-card medium">
+                <h3><i class="fas fa-info-circle"></i> Medium</h3>
+                <p class="count">{{ results.summary.medium }}</p>
+            </div>
+            <div class="summary-card low">
+                <h3><i class="fas fa-check-circle"></i> Low</h3>
+                <p class="count">{{ results.summary.low }}</p>
+            </div>
+            <div class="summary-card risk-score">
+                <h3>Risk Score</h3>
+                <p class="score {{ results.summary.risk_level|lower }}">{{ results.summary.risk_score }}/100</p>
+                <p class="risk-level">{{ results.summary.risk_level }}</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-network-wired"></i> Network Overview</h2>
+            <div class="network-info">
+                <div class="info-item">
+                    <span class="label">Target:</span>
+                    <span class="value">{{ results.target }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Open Ports:</span>
+                    <span class="value">{{ results.open_ports|length }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Services Found:</span>
+                    <span class="value">{{ results.summary.services_found }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">CVEs Found:</span>
+                    <span class="value">{{ results.summary.cves_found }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results sections would continue here -->
+        {% else %}
+        <div class="no-results">
+            <i class="fas fa-search fa-4x"></i>
+            <h2>No Scan Results Available</h2>
+            <p>Please run a scan first.</p>
+            <a href="/" class="button">Start New Scan</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

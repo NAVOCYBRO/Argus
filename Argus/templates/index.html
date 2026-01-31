@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Security Scanner | AI-Powered Cybersecurity Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="brand-logo">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h1>SecurityScanner Pro</h1>
+                        <p class="subtitle">Enterprise-grade vulnerability assessment with AI analysis</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <nav class="main-nav">
+                        <a href="#" class="nav-link active">
+                            <i class="fas fa-search"></i> Scan
+                        </a>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-history"></i> History
+                        </a>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chart-bar"></i> Analytics
+                        </a>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                    </nav>
+                    
+                    <div class="user-profile">
+                        <div class="user-avatar">AS</div>
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">Security Analyst</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Scanner Panel -->
+                <div class="card scanner-panel">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-search"></i>
+                            <span>Security Assessment</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" title="Help">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
+                            <button class="action-btn" title="Save Template">
+                                <i class="fas fa-save"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <form id="scanForm" class="scanner-form">
+                        <!-- Target Input -->
+                        <div class="input-group">
+                            <label class="input-label" for="target">
+                                <i class="fas fa-network-wired"></i>
+                                <span>Target System</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="text" 
+                                       id="target" 
+                                       name="target" 
+                                       class="input-field"
+                                       placeholder="example.com, 192.168.1.1, or 10.0.0.1" 
+                                       required>
+                            </div>
+                            <span class="input-hint">Enter IP address, hostname, or domain</span>
+                        </div>
+
+                        <!-- Scan Type Selection -->
+                        <div class="input-group">
+                            <label class="input-label">
+                                <i class="fas fa-sliders-h"></i>
+                                <span>Scan Type</span>
+                            </label>
+                            <div class="scan-types">
+                                <div class="scan-type">
+                                    <input type="radio" id="type_quick" name="scan_type" value="quick" checked>
+                                    <label for="type_quick">
+                                        <div class="type-header">
+                                            <div class="type-icon">
+                                                <i class="fas fa-bolt"></i>
+                                            </div>
+                                            <span class="type-name">Quick Scan</span>
+                                        </div>
+                                        <p class="type-desc">Basic port scanning and service detection</p>
+                                    </label>
+                                </div>
+                                <div class="scan-type">
+                                    <input type="radio" id="type_full" name="scan_type" value="full">
+                                    <label for="type_full">
+                                        <div class="type-header">
+                                            <div class="type-icon">
+                                                <i class="fas fa-search-plus"></i>
+                                            </div>
+                                            <span class="type-name">Full Scan</span>
+                                        </div>
+                                        <p class="type-desc">Comprehensive vulnerability assessment</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scan Options -->
+                        <div class="input-group">
+                            <label class="input-label">
+                                <i class="fas fa-cog"></i>
+                                <span>Scan Options</span>
+                            </label>
+                            <div class="scan-options">
+                                <label class="option-checkbox">
+                                    <input type="checkbox" id="full_scan" name="full_scan" checked>
+                                    <span class="option-label">Port Scanning</span>
+                                </label>
+                                <label class="option-checkbox">
+                                    <input type="checkbox" id="service_detect" name="service_detect" checked>
+                                    <span class="option-label">Service Detection</span>
+                                </label>
+                                <label class="option-checkbox">
+                                    <input type="checkbox" id="cve_check" name="cve_check" checked>
+                                    <span class="option-label">CVE Database</span>
+                                </label>
+                                <label class="option-checkbox">
+                                    <input type="checkbox" id="web_scan" name="web_scan" checked>
+                                    <span class="option-label">Web Assessment</span>
+                                </label>
+                                <label class="option-checkbox">
+                                    <input type="checkbox" id="ai_analysis" name="ai_analysis" checked>
+                                    <span class="option-label">AI Analysis</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Scan Button -->
+                        <button type="submit" class="scan-button" id="scanButton">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Start Security Scan</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="card quick-stats">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Quick Stats</span>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <span class="stat-trend trend-up">
+                                    <i class="fas fa-arrow-up"></i>
+                                    12%
+                                </span>
+                            </div>
+                            <span class="stat-value" id="totalScans">0</span>
+                            <span class="stat-label">Total Scans</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <span class="stat-trend trend-down">
+                                    <i class="fas fa-arrow-down"></i>
+                                    8%
+                                </span>
+                            </div>
+                            <span class="stat-value" id="criticalFindings">0</span>
+                            <span class="stat-label">Critical Findings</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                            </div>
+                            <span class="stat-value" id="avgScanTime">0s</span>
+                            <span class="stat-label">Avg. Scan Time</span>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                            </div>
+                            <span class="stat-value" id="aiStatus">Offline</span>
+                            <span class="stat-label">AI Assistant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="card progress-container" id="progressSection" style="display: none;">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-sync-alt fa-spin"></i>
+                            <span>Scan Progress</span>
+                        </div>
+                        <div class="progress-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="progressPercent">0%</span>
+                                <span class="stat-label">Complete</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="scanDuration">0s</span>
+                                <span class="stat-label">Duration</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    
+                    <div class="progress-steps" id="progressSteps"></div>
+                </div>
+
+                <!-- Results Container -->
+                <div class="card results-container" id="resultsContainer" style="display: none;">
+                    <div class="results-header">
+                        <div class="results-title">
+                            <h3>Scan Results</h3>
+                            <div class="target-meta">
+                                <span id="resultsTarget">N/A</span>
+                                <span>•</span>
+                                <span id="resultsTime">Just now</span>
+                                <span>•</span>
+                                <span id="resultsStatus">Completed</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" title="Export PDF">
+                                <i class="fas fa-file-pdf"></i>
+                            </button>
+                            <button class="action-btn" title="Export JSON">
+                                <i class="fas fa-file-code"></i>
+                            </button>
+                            <button class="action-btn" title="Print">
+                                <i class="fas fa-print"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Summary -->
+                    <div class="results-summary" id="resultsSummary"></div>
+
+                    <!-- Results Tabs -->
+                    <div class="results-tabs">
+                        <div class="tabs-header">
+                            <button class="tab-btn active" onclick="showResultsTab('overview')">
+                                <i class="fas fa-eye"></i>
+                                <span>Overview</span>
+                            </button>
+                            <button class="tab-btn" onclick="showResultsTab('network')">
+                                <i class="fas fa-network-wired"></i>
+                                <span>Network</span>
+                            </button>
+                            <button class="tab-btn" onclick="showResultsTab('vulnerabilities')">
+                                <i class="fas fa-bug"></i>
+                                <span>Vulnerabilities</span>
+                            </button>
+                            <button class="tab-btn" onclick="showResultsTab('recommendations')">
+                                <i class="fas fa-clipboard-check"></i>
+                                <span>Recommendations</span>
+                            </button>
+                            <button class="tab-btn" onclick="showResultsTab('ai')">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Analysis</span>
+                            </button>
+                        </div>
+
+                        <div class="tab-content active" id="overviewTab">
+                            <!-- Overview content will be populated -->
+                        </div>
+
+                        <div class="tab-content" id="networkTab">
+                            <!-- Network content will be populated -->
+                        </div>
+
+                        <div class="tab-content" id="vulnerabilitiesTab">
+                            <!-- Vulnerabilities content will be populated -->
+                        </div>
+
+                        <div class="tab-content" id="recommendationsTab">
+                            <!-- Recommendations content will be populated -->
+                        </div>
+
+                        <div class="tab-content" id="aiTab">
+                            <!-- AI Analysis content will be populated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Assistant -->
+                <div class="card ai-assistant">
+                    <div class="ai-header">
+                        <div class="ai-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="ai-info">
+                            <h3>Security AI Assistant</h3>
+                            <p>Ask questions about your scan results or get remediation advice</p>
+                        </div>
+                    </div>
+
+                    <div class="ai-conversation" id="chatMessages">
+                        <div class="message ai">
+                            <div class="message-content">
+                                <strong>Security Assistant:</strong> Hello! I'm here to help you analyze security scan results, explain vulnerabilities, and provide remediation guidance. What would you like to know?
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ai-input">
+                        <input type="text" 
+                               id="chatInput" 
+                               placeholder="Ask a security question..."
+                               onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                        <button onclick="sendChatMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>SecurityScanner Pro</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Documentation</a>
+                        <a href="#" class="footer-link">API</a>
+                        <a href="#" class="footer-link">Support</a>
+                        <a href="#" class="footer-link">Privacy</a>
+                    </div>
+                </div>
+                <div class="footer-legal">
+                    © 2024 SecurityScanner Pro. For authorized security testing only.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
