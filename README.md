@@ -50,69 +50,51 @@ A comprehensive, enterprise-grade cybersecurity assessment tool with AI-powered 
 
     Groq API Key (free at console.groq.com)
 
-    OpenAI API Key (optional, for fallback)
-
     Network Access (for target scanning)
 
 🚀 Quick Start
-1. Clone and Setup
-Clone the repository
-git clone 
-cd Argus
+    
+    Git clone <url>
+    
+    cd Argus
 
-# Create virtual environment (recommended)
-python -m venv venv
+    python -m venv Argus
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
+    source Argus/bin/activate
+    
+    pip install -r requirements.txt
 
-# Install dependencies
-pip install -r requirements.txt
-2. Configure Environment
+    nano .env
+    # API Keys
+    GROQ_API_KEY=Groq_api_key
+    NVD_API_KEY=Your_nvd_api_key
 
-Create a .env file in the project root:
-# Flask Configuration
-SECRET_KEY=your-secret-key-change-in-production
-FLASK_ENV=development
-
-# AI Configuration (Required for AI features)
-GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-# Scanner Configuration
-SCAN_TIMEOUT=30
-MAX_PORTS=1000
-
-3. Get Your API Keys
-Groq API Key (Required for AI Features):
-
-    Visit console.groq.com
-
-    Sign up for free account
-
-    Generate API key from dashboard
-
-    Add to .env file
-   nano .env
-   
-    #API Keys
-    GROQ_API_KEY=YOUR_GROQ_API_KEY
-    NVD_API_KEY=YOUR_NVD_API_KEY
-
-    #Security
+    # Security
     SECRET_KEY=your-secret-key-for-flask
 
-    #Application
+    # Application
     DEBUG=True
     PORT=5000
-           
+Run now tools
+    
+    python app.py
 
 
 
-Run the Application
-python app.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Access the Application
 <img width="1364" height="655" alt="Screenshot_20260201_014332" src="https://github.com/user-attachments/assets/489c5838-2cf8-41d4-be41-9df267429eb5" />
 
